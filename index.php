@@ -90,8 +90,9 @@ if(isset($_POST['name'])){
             <input type="phone" name="phone" id="phone" placeholder="Enter your phone">
             <textarea name="desc" id="desc" cols="30" rows="10"
                 placeholder="Enter any other information here"></textarea>
-            <button class="btn">Submit</button>
-            <!-- <button class="bnt">Reset</button> -->
+            <button type="submit" class="btn">Submit</button>
+            <button type="reset" class="btn" style="background-color: #f44336;">Clear</button>
+
         </form>
     </div>
 
