@@ -1,5 +1,6 @@
 <?php
 $insert = false;
+$error = "";
 if(isset($_POST['name'])){
     // set connection variables
    $server = "localhost";
@@ -27,15 +28,17 @@ if(isset($_POST['name'])){
     //echo $sql;
 
     // Execute the query
-   if($con->query($sql) == true){
-    //   echo "Successfully inserted";
+    if($con->query($sql) == true){
+        //   echo "Successfully inserted";
 
-    // flag for successful insertion
-    $insert = true;
-   }
-   else{
-      echo "ERROR: $sql <br> $con->error";
-   }
+        // flag for successful insertion
+        $insert = true;
+    }
+    else{
+        $error = "Sorry, something went wrong. Please try again later.";
+        // optionally: log $con->error somewhere
+    }
+
    // close the database connection
    $con->close();
 
@@ -71,9 +74,13 @@ if(isset($_POST['name'])){
         <p>Enter your details to confirm your participation in the trip</p>
         <?php
             if($insert == true){
-                echo "<p class='submit-msg'>Thanks for submitting your form. We are happy to see you joining for the US trip</p>";
+                echo "<p class='submit-msg' style='color: green;'>Thanks for submitting your form. We are happy to see you joining for the US trip</p>";
+            }
+            elseif($error != ""){
+                echo "<p class='submit-msg' style='color: red;'>$error</p>";
             }
         ?>
+
 
         <form action="index.php" method="post">
             <input type="text" name="name" id="name" placeholder="Enter your name">
